@@ -77,31 +77,26 @@ final class MakeReportAnonController: ObservableObject {
     func validarCampos() -> [String] {
         var errores: [String] = []
 
-        // Título
         if titleText.esVacio {
             errores.append("El título es obligatorio.")
         } else if !titleText.esTituloValido {
-            errores.append("El título debe tener entre 5 y 100 caracteres.")
+            errores.append("El título debe tener entre 5 y 100 caracteres y solo puede contener letras y espacios.")
         }
 
-        // URL
         if urlText.esVacio {
-            errores.append("El URL es obligatorio.")
-        }
-        if !urlText.esVacio && !urlText.esUrlValida {
-            errores.append("Debe ser una URL válida y máximo 2083 caracteres.")
+            errores.append("La URL es obligatoria.")
+        } else if !urlText.esUrlValida {
+            errores.append("La URL no es válida o supera el máximo permitido (2083 caracteres).")
         }
 
-        // Descripción
         if descriptionText.esVacio {
             errores.append("La descripción es obligatoria.")
         } else if !descriptionText.esDescripcionValida {
-            errores.append("La descripción debe tener entre 20 y 1000 caracteres.")
+            errores.append("La descripción debe tener entre 20 y 1000 caracteres y solo puede contener letras y espacios.")
         }
 
-        // Categoría
         if selectedCategory.isEmpty {
-            errores.append("Selecciona una categoría válida.")
+            errores.append("Selecciona una categoría antes de continuar.")
         }
 
         return errores

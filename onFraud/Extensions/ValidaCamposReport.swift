@@ -7,13 +7,11 @@ extension String {
         return self.range(of: regex, options: .regularExpression) != nil
     }
 
-    // URL: válida y máximo 2083 caracteres
+    // URL: válida la url con el estandar de apple
     var esUrlValida: Bool {
-        guard self.count <= 2083 else { return false }
-        let pattern = #"^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-._~:/?#[\]@!$&'()*+,;=%]*)?$"#
-        return self.range(of: pattern, options: .regularExpression) != nil
+        guard let url = URL(string: self) else { return false }
+        return ["http", "https"].contains(url.scheme)
     }
-
 
     // Descripción: 20 a 1000 caracteres
     var esDescripcionValida: Bool {

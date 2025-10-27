@@ -83,7 +83,7 @@ final class MakeReportController: ObservableObject {
         if urlText.esVacio {
             errores.append("La URL es obligatoria.")
         } else if !urlText.esUrlValida {
-            errores.append("La URL no es válida o supera el máximo permitido (2083 caracteres). Ejemplo: https://sitio.com")
+            errores.append("La URL no es válida o supera el máximo permitido (2083 caracteres).")
         }
 
         if descriptionText.esVacio {
